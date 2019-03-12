@@ -17,7 +17,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
 public class ParoleController {
-	
+		
 	Parole elenco ;
 
     @FXML // ResourceBundle that was given to the FXMLLoader
@@ -40,12 +40,25 @@ public class ParoleController {
 
     @FXML
     void doInsert(ActionEvent event) {
-    	// TODO
+    	String par= this.txtParola.getText();
+    elenco.addParola(par);
+    this.txtResult.clear();
+    String stampa = "";
+
+    for (String s : elenco.getElenco())
+    {
+       stampa += s + "\n";
     }
+
+    this.txtResult.appendText(stampa);
+       }
     
     @FXML
     void doReset(ActionEvent event) {
-    	// TODO
+    	elenco.reset();
+    	this.txtParola.clear();
+    	this.txtResult.clear();
+    	
     }
 
     @FXML // This method is called by the FXMLLoader when initialization is complete
