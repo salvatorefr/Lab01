@@ -5,16 +5,17 @@ import java.util.List;
 
 public class Parole {
 	List <String> parole = new ArrayList<String>();
-
+	
 
 		
 	public Parole() {
 		
 	}
 	
-	public void addParola(String p) {
-		
+	public long addParola(String p) {
+		long start=System.nanoTime();
 		parole.add(p);
+		return System.nanoTime()-start;
 	}
 	
 	public List<String> getElenco() {
@@ -22,8 +23,21 @@ public class Parole {
 		return parole;
 	}
 	
-	public void reset() {
+	public long reset() {
+		long start=System.nanoTime();
 		parole.clear();
+		return System.nanoTime()-start;
+	}
+	
+	public long removeParola(String p) {
+		
+		long start=System.nanoTime();
+		if (parole.contains(p))
+			{
+			int cancella=	parole.indexOf(p);
+			parole.remove(cancella);
+				}
+	return System.nanoTime()-start;
 	}
 
 }
