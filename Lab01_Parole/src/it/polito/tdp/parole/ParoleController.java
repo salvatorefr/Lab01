@@ -6,7 +6,7 @@ package it.polito.tdp.parole;
 
 
 import it.polito.tdp.parole.model.Parole;
-import it.polito.tdp.parole.model.ParoleLinked;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -19,9 +19,8 @@ import javafx.scene.control.TextField;
 public class ParoleController {
 		
 	Parole elenco ;
-	ParoleLinked elencoLinked;
 	long tempoelab=0;
-	long tempoelabLinked=0;
+	
 
     @FXML // ResourceBundle that was given to the FXMLLoader
     private ResourceBundle resources;
@@ -50,21 +49,17 @@ public class ParoleController {
     void doInsert(ActionEvent event) {
     	String par= this.txtParola.getText();
     this.tempoelab=elenco.addParola(par);
-    this.tempoelabLinked=elencoLinked.addParolaL(par);
     this.txtResult.clear();
     aggiorna();
-    this.txtbench.appendText("parola aggiunta con arrayList in "+this.tempoelab+"\n");
-    this.txtbench.appendText("parola aggiunta con linkedList in "+this.tempoelabLinked+"\n");
+    this.txtbench.appendText("parola aggiunta in "+this.tempoelab);
     
        }
 
     @FXML
     void doCancella(ActionEvent event) {
     	this.tempoelab=elenco.removeParola(this.txtParola.getText());
-    	this.tempoelabLinked=elencoLinked.removeParola(this.txtParola.getText());
     	aggiorna();
-    	 this.txtbench.appendText("parola in arrayList cancellata in "+this.tempoelab+"\n");
-    	 this.txtbench.appendText("parola in LinkedList cancellata in "+this.tempoelabLinked);
+    	 this.txtbench.appendText("parola cancellata in "+this.tempoelab);
     }
 
     
@@ -72,12 +67,10 @@ public class ParoleController {
     void doReset(ActionEvent event) {
     	
     	this.tempoelab=elenco.reset();
-    	this.tempoelabLinked=elencoLinked.reset();
     	this.txtParola.clear();
     	this.txtResult.clear();
     	this.txtbench.clear();
-    	 this.txtbench.appendText("resettato arrayList in "+this.tempoelab+"\n");
-    	 this.txtbench.appendText("resettato LinkedList in "+this.tempoelabLinked);
+    	 this.txtbench.appendText("resettato  in "+this.tempoelab);
     	
     }
 
@@ -88,7 +81,6 @@ public class ParoleController {
         assert btnInserisci != null : "fx:id=\"btnInserisci\" was not injected: check your FXML file 'Parole.fxml'.";
 
         elenco = new Parole() ;
-        elencoLinked=new ParoleLinked();
         
     }
    void aggiorna(){
